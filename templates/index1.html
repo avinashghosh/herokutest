@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+        <style>
+          .searchbar1{
+            width:50%;box-shadow: 0 1px 4px 0 rgba(0,0,0,.37);margin-left:20px;
+          }
+          #btnsearch{
+            background-color: Transparent;
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            margin:0px;
+            max-width:280px;
+            width:auto;
+            margin:20px;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+          }
+          .contentcontainer{
+          }
+          .iconimg{
+              max-width:200px;
+              width:auto;
+          }
+
+        </style>
+<h1 style="font-family: 'Karla', ; font-weight: bold;">Explore Colleges</h1><hr>  
+<div class="col-lg-12" style="text-align:center;margin:auto">
+    <div class="row" style="text-align:center">
+    {% for coll in engcollg %}
+    <div class="col-sm-3" class="contentcontainer" style="text-align:center">
+        <form action="catagory" method="post">
+        {% csrf_token %}<div id="zoom"> 
+            <button type="submit" class="rig-cell" id="btnsearch" name="srh" value={{coll.catagory}}>
+                    <img src="{{coll.catagorylogo.url}}" style="width:150px;hight:150px" class="iconimg"></br>
+                    <h5 id="conlink">{{coll.catagory}}<br>
+                    <script>
+                        y=0;
+                        function incy(){
+                            y++;
+                        };
+                        function writer(){
+                            document.write(y);
+                        }
+                        
+                    </script>
+                    {% for c1 in en %}
+                        {% if coll.catagory in c1 %}
+                            <script>
+                                incy();
+                            </script>
+                        {% endif %}
+
+                    {% endfor %}(
+                    <script>
+                    writer();
+                    </script> ) 
+                    </h5>
+                    
+            </button></div>
+        </form>
+    </div>
+    {% endfor %}
+    </div>
+</div>  
+    <!--<ul id="rig">
+    {% for coll in eng %}
+    <h4>{{coll.caragory}}</h4>
+    
+    {% endfor %}-->
+    
+<!--
+    {% for coll in engcollg %}
+    <li style="margin:20px">
+        <form action="search" method="post">
+        {% csrf_token %}<div id="zoom">
+            <button type="submit" class="rig-cell" id="btnsearch" name="srh" value={{col.catagory}}>
+                
+                    <img src="{{coll.catagorylogo.url}}" style="width:150px;hight:150px"></br>
+                    <h5 id="conlink">{{coll.catagory}}<br>
+                    
+                    {{en.0}}
+                    
+                    </h5>
+                    
+                
+            </button></div>
+        </form>
+    </li>
+    {% endfor %}
+</ul>-->
+
+
+{% endblock  %}

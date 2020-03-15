@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+
+
+      #namebutton{
+          background-color: Transparent;
+          background-repeat:no-repeat;
+          border: none;
+          cursor:pointer;
+          overflow: hidden;
+          outline:none;
+          
+      }
+      #filterdiv{
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+        margin-left:-15px;
+        background-color:#333;
+        box-shadow: 0 6px 10px 0 rgba(0,0,0,.3), 0 2px 2px 0 rgba(0,0,0,.2);
+        padding:20px;
+      }
+      #filterhead{
+        color:white;
+      }
+      #searchtable{
+        box-shadow: 0 6px 10px 0 rgba(0,0,0,.3), 0 2px 2px 0 rgba(0,0,0,.2);
+
+      }
+      @media only screen and (max-width: 574px) {
+        #filterdiv{
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px; 
+        margin:auto;
+      }
+      #cars{
+        float:right;
+      }
+</style>
+<div class="container" style="text-align:center">
+  <div class="row">
+    <div class="col-sm-4" id="filterdiv">
+      <h2 id="filterhead">Filters</h2>
+
+      <style>
+        select-selected {
+          background-color: DodgerBlue;
+        }
+        select{
+          background-color:aliceblue;
+          width:200px;
+          height:30px;
+          font-size:20px;
+          border: 6px solid transparent;
+          border-color: #fff transparent transparent transparent;
+        }
+        
+      </style>
+<form action="filtered" method="get">
+  <select id="cityf" name="cityf">
+    <option>City</option>
+    {% for filter1 in  cities %}
+    <option value="{{filter1}}">{{filter1}}</option>
+    {% endfor %}
+  </select><br></br>
+  <select id="ctype" name="ctype">
+    <option>Course Type</option>
+    <option value="UG">UG</option>
+    <option value="PG">PG</option>
+  </select><br></br>
+  <select id="course" name="course">
+    <option>Course</option>
+    {% for filter2 in  coursef %}
+    <option value="{{filter2}}">{{filter2}}</option>
+    {% endfor %}
+  </select><br></br>
+  <select id="stream" name="stream">
+    <option>Stream</option>
+    {% for filter3 in  streamf %}
+    <option value="{{filter3}}">{{filter3}}</option>
+    {% endfor %}
+  </select><br></br>
+  <input type="submit">
+</form>
+
+
+    </div>
+    <div class="col-sm-8">
+      <h2>Search Results</h2>
+
+        <table id="searchtable">
+          <tr>
+            <th>College Name</th>
+            <th>Location</th>
+            <th>Contact Number</th>
+          </tr>
+          
+            {% if dests %}
+            {% for dest in dests %}
+            <tr>
+            <td>
+            <form action="college" method="get">
+            {% csrf_token %}
+            <button id="namebutton" name="sub" type="submit" value="{{dest.name}}">{{dest.name}}</button>
+            </form>
+            </td>
+            <td>
+            <a href="{{dest.gmaplink}}" id="conlink" target=_blank></i>{{dest.address}}</a>
+            </td>
+            <td>
+            {{dest.phone}}
+            </td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+          
+        </table>
+        <p style="padding: 8px;">No more results to show</p>
+    </div>
+  </div>
+</div>
+
+{% endblock  %}

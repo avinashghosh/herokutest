@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+
+#namebutton{
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    
+}
+</style>
+</head>
+<body>
+
+{% if current %}
+    {% for j in current %}
+    
+        <div class="" style="width:100%;padding-top:10px;margin-bottom:0px;height:auto">
+            <div class="" id="contentcontainer" style="border-radius: 8px;background-color:aliceblue;box-shadow: 0 6px 10px 0 rgba(0,0,0,.3), 0 2px 2px 0 rgba(0,0,0,.2);height:auto">
+                <br><h3><a id="conlink" href="http://google.com">{{j.name}}</a></h3>
+                <img src="{{j.banner.url}}" style="width:100%;padding:10px;">
+                <div class="row" id="contentrow1" style="margin-bottom:0px">
+                    <div class="col-md-8">
+                        <div class="container">
+                        <h5>About</h5>
+                        <p>{{j.about}}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Contact us</h5>
+                        <p class="con1">
+                            <a href="{{j.gmaplink}}" id="conlink" target=_blank><i class="fas fa-home mr-3"></i>{{j.address}}</a></p>
+                        <p class="con1">
+                            <a href="mailto:email@example.com" id="conlink" target=_blank><i class="fas fa-envelope mr-3"></i>{{j.email}}</a></p>
+                        <p class="con1">
+                            <i class="fas fa-phone mr-3" id="conlink" target=_blank></i>{{j.phone}}</p>
+                        <p class="con1">
+                            <i class="fas fa-phone mr-3" id="conlink" target=_blank></i>{{j.mobile}}</p>
+                    
+                    </div>
+                </div><br> 
+        {% endfor %}
+    {% endif %}
+
+<h2>Courses</h2>
+
+<table style="box-shadow: 0 6px 10px 0 rgba(0,0,0,.3), 0 2px 2px 0 rgba(0,0,0,.2);width:60%">
+  <tr>
+    <th>Course Name</th> 
+    <th>Stream</th>
+  </tr>
+  
+    {% if sub %}
+    {% for cc in sub %}
+  <tr>
+    <td>{{cc.course}}</td>
+    <td>{{cc.stream}}</td>
+  </tr>
+    {% endfor %}
+    {% endif %}
+</table>
+
+<div class="container-fluid">
+  <div class="row">
+      
+    <style>
+    #btnred{
+        background-color: #F44336;
+        border: none;
+        color: white;
+        padding: 8px 15px;
+        margin:10px;
+        text-align: center;
+        font-size: 16px;
+        cursor: pointer;
+
+    }
+    </style>
+    
+    <div class="col-sm" style="padding:10px">
+        <button id="btnred">
+        Apply Online
+        </button>
+    </div>
+  </div>
+</div>
+
+ </div>
+                
+                
+                    
+        </div>
+{% endblock  %}
+

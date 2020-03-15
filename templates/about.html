@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div id="containerfull">
+  <div id="content-wrap">
+    <div class="containersearch">
+      <div class="row" style="background-color:aliceblue;padding:10px;width:101%;text-align:center;">
+        <div class="col-md-12" id="search1"><br><h3>About Us</h3>
+          <div class="container">
+            <div class="row">
+              <p style="font-size:20px">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+            </div><br><br>
+              <div class="row">
+                <div class="col-sm-6" style="float:left">
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d973.787678859745!2d74.99333882918596!3d12.506167599447659!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba4838a6141f47d%3A0xaaefc850153e251a!2sEETEECEE%20WORLD!5e0!3m2!1sen!2sin!4v1582278003470!5m2!1sen!2sin" width="auto" height="300px" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+                </div>
+                <div class="col-sm-6" style="float:right;height:400px">
+                  <form method="post" action="" style="max-height:50px;width:70%;margin:20px;align:center">
+                  {% csrf_token %}
+                    <div class="form-group">
+                      <input type="text" name="name" class="form-control" value="" placeholder="Name" style="background:transparent;">
+                    </div>
+                    <div class="form-group">
+                      <input type="text" name="email" class="form-control" value="" placeholder=" Email address" style="background:transparent;">
+                    </div>
+                    <div class="form-group">
+                      <textarea name="message" class="form-control" style="height:110px;background: transparent;" placeholder=""></textarea>
+                    </div>
+                    <div class="form-group">
+                      <input type="submit" name="send" class="btn btn-info" value="Send"/>
+                    </div>
+                  </form>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+{% endblock  %}
